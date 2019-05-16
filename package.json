@@ -1,11 +1,12 @@
 {
   "name": "brain_games_shohirev_lvl1",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"

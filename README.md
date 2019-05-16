@@ -6,4 +6,4 @@
 
 [![Build Status](https://travis-ci.com/shohirev/project-lvl1-s486.svg?branch=master)](https://travis-ci.com/shohirev/project-lvl1-s486)
 
-[![asciicast](https://asciinema.org/a/IojvGhkP7qnjWIjthoKpMZ4sU.svg)](https://asciinema.org/a/IojvGhkP7qnjWIjthoKpMZ4sU)
+[![asciicast](https://asciinema.org/a/l39FSACOjPMBU9fYK8NtZFFaj.svg)](https://asciinema.org/a/l39FSACOjPMBU9fYK8NtZFFaj)
