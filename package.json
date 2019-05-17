@@ -1,7 +1,8 @@
 {
   "name": "brain_games_shohirev_lvl1",
   "version": "2.5.2",
-  "description": "",
+  "description": "intellectual games",
+  "keywords": "game",
   "main": "index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
