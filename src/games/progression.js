@@ -7,7 +7,7 @@ const makeProgression = () => {
   const step = getRandom(1, 5);
   let i = 1;
   let acc = base;
-  let result = [];
+  const result = [];
   while (i <= 10) {
     result.push(acc);
     acc += step;
@@ -17,12 +17,12 @@ const makeProgression = () => {
 };
 
 const copyArray = (array, index) => {
-  let newArray = [];
+  const newArray = [];
   for (let i = 0; i < array.length; i += 1) {
     if (i === index) {
       newArray.push('..');
     } else {
-    newArray.push(String(array[i]));
+      newArray.push(String(array[i]));
     }
   }
   return newArray;
@@ -44,7 +44,7 @@ const startRound = () => {
   console.log(`Question: ${copyArray(progression, index)}`);
   const userAnswer = readlineSync.question('Your answer: ');
   if (userAnswer === String(progression[index])) {
-  	return 'Correct!';
+    return 'Correct!';
   }
   return `${userAnswer} is wrong answer ;(. Correct answer was ${String(progression[index])}. Let's try again,`;
 };

@@ -1,8 +1,3 @@
-import * as even from './games/even';
-import * as calc from './games/calc';
-import * as progression from './games/progression';
-import * as prime from './games/prime';
-
 const startGame = (game) => {
   game.greeting();
   game.showRule();
@@ -23,4 +18,4 @@ const startGame = (game) => {
   }
 };
 
-export { startGame };
+export default startGame;

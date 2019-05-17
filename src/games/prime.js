@@ -6,7 +6,6 @@ const isPrime = (number) => {
   if (number < 4) {
     return true;
   }
-  let divisor = number - 1;
   for (let i = number - 1; i > 1; i -= 1) {
     if (number % i === 0) {
       return false;
@@ -29,7 +28,7 @@ const startRound = () => {
   const number = getRandom(1, 100);
   console.log(`Question: ${number}`);
   const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = isPrime(number) === true ? "yes" : "no";
+  const correctAnswer = isPrime(number) === true ? 'yes' : 'no';
   if (userAnswer === correctAnswer) {
     return 'Correct!';
   }
