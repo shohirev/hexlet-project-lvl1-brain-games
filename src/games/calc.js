@@ -1,44 +1,43 @@
 import readlineSync from 'readline-sync';
-
-// нахождение случайного числа от 1 до 100
-const getRandom = (min, max) => Math.floor(Math.random() * max + min);
+import makeGame from '..';
+import getRandomNumber from '../functions/functions';
 
 // выбор арифметического действия
 const getRandomAction = () => {
-  const action = getRandom(1, 3);
-  if (action === 1) {
-    return '+';
+  const action = getRandomNumber(1, 3);
+  switch (action) {
+    case 1:
+      return '+';
+      break;
+    case 2:
+      return '-';
+      break;
+    case 3:
+      return '*';
+      break;
+    default:
+      return '+';
+      break;
   }
-  if (action === 2) {
-    return '-';
-  }
-  return '*';
 };
 
-const greeting = () => console.log('Welcome to the Brain Games!');
+const rule = 'What is the result of the expression?';
 
-const showRule = () => console.log('What is the result of the expression?');
-
-const getUserName = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  return userName;
-};
-
-const startRound = () => {
-  const number1 = getRandom(1, 100);
-  const number2 = getRandom(1, 100);
+const makeRound = () => {
+  const number1 = getRandomNumber(1, 100);
+  const number2 = getRandomNumber(1, 100);
   const action = getRandomAction();
   console.log(`Question: ${number1} ${action} ${number2}`);
   const userAnswer = readlineSync.question('Your answer: ');
   let correctAnswer;
-  if (action === '+') {
+  switch (action) {
+    case '+':
     correctAnswer = number1 + number2;
-  }
-  if (action === '-') {
+    break;
+    case '-':
     correctAnswer = number1 - number2;
-  }
-  if (action === '*') {
+    break;
+    case '*':
     correctAnswer = number1 * number2;
   }
   if (Number(userAnswer) === correctAnswer) {
@@ -47,6 +46,6 @@ const startRound = () => {
   return `${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again, `;
 };
 
-export {
-  greeting, showRule, getUserName, startRound,
-};
+const startGame = () => makeGame(rule, makeRound);
+
+export default startGame;

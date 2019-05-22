@@ -1,54 +1,47 @@
 import readlineSync from 'readline-sync';
-
-const getRandom = (min, max) => Math.floor(Math.random() * max + min);
+import makeGame from '..';
+import getRandomNumber from '../functions/functions';
 
 const makeProgression = () => {
-  const base = getRandom(1, 100);
-  const step = getRandom(1, 5);
-  let i = 1;
-  let acc = base;
-  const result = [];
-  while (i <= 10) {
-    result.push(acc);
-    acc += step;
+  const numbers = [];
+  const base = getRandomNumber(1, 100);
+  const step = getRandomNumber(1, 5);
+  let element = base;
+  let i = 0;
+  while (i < 10) {
+    numbers.push(element);
+    element += step;
     i += 1;
   }
-  return result;
+  return numbers;
 };
 
-const copyArray = (array, index) => {
-  const newArray = [];
-  for (let i = 0; i < array.length; i += 1) {
-    if (i === index) {
-      newArray.push('..');
+const makeSpaceInProgression = (progression, spaceIndex) => {
+  const progressionWithSpace = [];
+  for (let i = 0; i < progression.length; i += 1) {
+    if (i === spaceIndex) {
+      progressionWithSpace.push('..');
     } else {
-      newArray.push(String(array[i]));
+      progressionWithSpace.push(String(progression[i]));
     }
   }
-  return newArray;
+  return progressionWithSpace;
 };
 
-const greeting = () => console.log('Welcome to the Brain Games!');
+const rule = 'What number is missing in the progression?';
 
-const showRule = () => console.log('What number is missing in the progression?');
-
-const getUserName = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  return userName;
-};
-
-const startRound = () => {
+const makeRound = () => {
   const progression = makeProgression();
-  const index = getRandom(0, 9);
-  console.log(`Question: ${copyArray(progression, index)}`);
+  const spaceIndex = getRandomNumber(0, progression.length - 1);
+  console.log(`Question: ${makeSpaceInProgression(progression, spaceIndex)}`);
   const userAnswer = readlineSync.question('Your answer: ');
-  if (userAnswer === String(progression[index])) {
+  const correctAnswer = String(progression[spaceIndex]);
+  if (userAnswer === correctAnswer) {
     return 'Correct!';
   }
-  return `${userAnswer} is wrong answer ;(. Correct answer was ${String(progression[index])}. Let's try again,`;
+  return `${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again,`;
 };
 
-export {
-  greeting, showRule, getUserName, startRound,
-};
+const startGame = () => makeGame(rule, makeRound);
+
+export default startGame;

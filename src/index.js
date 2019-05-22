@@ -1,11 +1,19 @@
-const startGame = (game) => {
-  game.greeting();
-  game.showRule();
-  const userName = game.getUserName();
+import readlineSync from 'readline-sync';
+
+const getUserName = () => {
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  return userName;
+};
+
+const makeGame = (rule, makeRound) => {
+  console.log('Welcome to the Brain Games!');
+  console.log(rule);
+  const userName = getUserName();
   let log = 'Correct!';
   let i = 0;
   while (log === 'Correct!' && i < 3) {
-    log = game.startRound();
+    log = makeRound();
     if (log === 'Correct!') {
       console.log(log);
     } else {
@@ -18,4 +26,4 @@ const startGame = (game) => {
   }
 };
 
-export default startGame;
+export default makeGame;
