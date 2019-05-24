@@ -1,19 +1,16 @@
-import readlineSync from 'readline-sync';
 import makeGame from '..';
 import getRandomNumber from '../functions/functions';
 
-const makeProgression = () => {
-  const numbers = [];
-  const base = getRandomNumber(1, 100);
-  const step = getRandomNumber(1, 5);
+const makeProgression = (base, step, lengthOfProgression) => {
+  const progression = [];
   let element = base;
   let i = 0;
-  while (i < 10) {
-    numbers.push(element);
+  while (i < lengthOfProgression) {
+    progression.push(element);
     element += step;
     i += 1;
   }
-  return numbers;
+  return progression;
 };
 
 const makeSpaceInProgression = (progression, spaceIndex) => {
@@ -22,26 +19,38 @@ const makeSpaceInProgression = (progression, spaceIndex) => {
     if (i === spaceIndex) {
       progressionWithSpace.push('..');
     } else {
-      progressionWithSpace.push(String(progression[i]));
+      progressionWithSpace.push(progression[i]);
     }
   }
   return progressionWithSpace;
 };
 
-const rule = 'What number is missing in the progression?';
+const task = 'What number is missing in the progression?';
 
-const makeRound = () => {
-  const progression = makeProgression();
+const askQuestion = () => {
+  const baseNumber = getRandomNumber(1, 100);
+  const stepOfProgression = getRandomNumber(1, 5);
+  const progression = makeProgression(baseNumber, stepOfProgression, 10);
   const spaceIndex = getRandomNumber(0, progression.length - 1);
-  console.log(`Question: ${makeSpaceInProgression(progression, spaceIndex)}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = String(progression[spaceIndex]);
-  if (userAnswer === correctAnswer) {
-    return 'Correct!';
-  }
-  return `${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again,`;
+  return makeSpaceInProgression(progression, spaceIndex);
 };
 
-const startGame = () => makeGame(rule, makeRound);
+const getCorrectAnswer = (progression) => {
+  let progressionStep;
+  let spaceIndex;
+  for (let i = 0; i < progression.length - 1; i += 1) {
+    if (typeof (progression[i]) === 'number' && typeof (progression[i + 1] === 'number')) {
+      progressionStep = progression[i + 1] - progression[i];
+    } else if (progression[i] === '..') {
+      spaceIndex = i;
+    }
+  }
+  if (spaceIndex < progression.length - 1) {
+    return String(progression[spaceIndex + 1] - progressionStep);
+  }
+  return String(progression[spaceIndex - 2] + progressionStep);
+};
+
+const startGame = () => makeGame(task, askQuestion, getCorrectAnswer);
 
 export default startGame;

@@ -1,21 +1,24 @@
-import readlineSync from 'readline-sync';
-import { getRandomNumber, isEven } from '../functions/functions';
+import getRandomNumber from '../functions/functions';
 import makeGame from '..';
 
-
-const rule = 'Answer "yes" if number even otherwise answer "no".';
-
-const makeRound = () => {
-  const number = getRandomNumber(1, 100);
-  console.log(`Question: ${number}`);
-  const answer = readlineSync.question('Your answer: ');
-  const correctAnswer = isEven(number) ? 'yes' : 'no';
-  if (answer === correctAnswer) {
-    return 'Correct!';
+const isEven = (number) => {
+  if (number % 2 === 0) {
+    return true;
   }
-  return `${answer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again, `;
+  return false;
 };
 
-const startGame = () => makeGame(rule, makeRound);
+const task = 'Answer "yes" if number even otherwise answer "no".';
+
+const askQuestion = () => getRandomNumber(1, 100);
+
+const getCorrectAnswer = (question) => {
+  if (isEven(question)) {
+    return 'yes';
+  }
+  return 'no';
+};
+
+const startGame = () => makeGame(task, askQuestion, getCorrectAnswer);
 
 export default startGame;

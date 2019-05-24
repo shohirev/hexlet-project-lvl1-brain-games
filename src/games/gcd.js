@@ -1,29 +1,23 @@
-import readlineSync from 'readline-sync';
 import makeGame from '..';
 import getRandomNumber from '../functions/functions';
 
-// нахождение НОД
-const getNod = (x, y) => {
+const getGCD = (x, y) => {
   if (x !== 0) {
-    return getNod(y % x, x);
+    return getGCD(y % x, x);
   }
   return y;
 };
 
-const rule = 'Find the greatest common divisor of given numbers.';
+const task = 'Find the greatest common divisor of given numbers.';
 
-const makeRound = () => {
-  const number1 = getRandomNumber(1, 100);
-  const number2 = getRandomNumber(1, 100);
-  console.log(`Question: ${number1} ${number2}`);
-  const userAnswer = readlineSync.question('Your answer: ');
-  const correctAnswer = getNod(number1, number2);
-  if (Number(userAnswer) === correctAnswer) {
-    return 'Correct!';
-  }
-  return `${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again,`;
+const askQuestion = () => [getRandomNumber(1, 100), getRandomNumber(1, 100)];
+
+const getCorrectAnswer = (question) => {
+  const firstNumber = question[0];
+  const secondNumber = question[1];
+  return String(getGCD(firstNumber, secondNumber));
 };
 
-const startGame = () => makeGame(rule, makeRound);
+const startGame = () => makeGame(task, askQuestion, getCorrectAnswer);
 
 export default startGame;
