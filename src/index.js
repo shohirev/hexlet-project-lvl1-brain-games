@@ -1,28 +1,31 @@
 import readlineSync from 'readline-sync';
+import { car, cdr } from 'hexlet-pairs';
 
-const makeGame = (task, askQuestion, getCorrectAnswer) => {
+const roundsCount = 3;
+
+const makeGame = (task, getGameData) => {
   console.log('Welcome to the Brain Games!');
   console.log(task);
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
-  let log = 'Correct!';
-  const quantityOfRounds = 3;
-  for (let i = 0; i < quantityOfRounds && log === 'Correct!'; i += 1) {
-    const question = askQuestion();
+
+  const iter = (roundsCounter) => {
+    if (roundsCounter === roundsCount) {
+      return console.log(`Congratulations, ${userName}!`);
+    }
+    const gameData = getGameData();
+    const question = car(gameData);
+    const correctAnswer = cdr(gameData);
     console.log(`Question: ${question}`);
-    const correctAnswer = getCorrectAnswer(question);
     const userAnswer = readlineSync.question('Your answer: ');
     if (userAnswer === correctAnswer) {
-      console.log(log);
-    } else {
-      log = `${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again, ${userName}!`;
+      console.log('Correct!');
+      return iter(roundsCounter + 1);
     }
-  }
-  if (log === 'Correct!') {
-    console.log(`Congratulations, ${userName}!`);
-  } else {
-    console.log(log);
-  }
+    return console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again, ${userName}!`);
+  };
+
+  return iter(0);
 };
 
 export default makeGame;

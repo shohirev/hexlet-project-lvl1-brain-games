@@ -1,24 +1,17 @@
 import getRandomNumber from '../functions/functions';
+import { cons } from 'hexlet-pairs';
 import makeGame from '..';
 
-const isEven = (number) => {
-  if (number % 2 === 0) {
-    return true;
-  }
-  return false;
-};
+const isEven = number => number % 2 === 0;
 
 const task = 'Answer "yes" if number even otherwise answer "no".';
 
-const askQuestion = () => getRandomNumber(1, 100);
-
-const getCorrectAnswer = (question) => {
-  if (isEven(question)) {
-    return 'yes';
-  }
-  return 'no';
+const getGameData = () => {
+  const question = getRandomNumber(1, 100);
+  const correctAnswer = isEven(question) === true ? 'yes' : 'no';
+  return cons(question, correctAnswer);
 };
 
-const startGame = () => makeGame(task, askQuestion, getCorrectAnswer);
+const startGame = () => makeGame(task, getGameData);
 
 export default startGame;
