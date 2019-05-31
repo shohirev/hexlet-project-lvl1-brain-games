@@ -12,8 +12,6 @@ This is a first-level project of JavaScript course by Hexlet. It contains 5 CLI 
 - Is prime Number?
 - Find the missed member of progression
 
-Below You can see the examples of game process in "Is prime Number?"
-
 ## Installation
 
 npm i brain_games_shohirev_lvl1
@@ -26,6 +24,8 @@ Enter the game title in command line:
 - brain-gcd
 - brain-prime
 - brain-progression
+
+## Below You can see the examples of game process in "Is prime Number?"
 
 [![asciicast](https://asciinema.org/a/wQbByKcx11JTFF5zvsDiggzla.svg)](https://asciinema.org/a/wQbByKcx11JTFF5zvsDiggzla)
 
