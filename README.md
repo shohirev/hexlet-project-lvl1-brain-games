@@ -14,8 +14,18 @@ This is a first-level project of JavaScript course by Hexlet. It contains 5 CLI 
 
 Below You can see the examples of game process in "Is prime Number?"
 
-INSTALLATION
+## Installation
+
 npm i brain_games_shohirev_lvl1
+
+## Getting started
+
+Enter the game title in command line:
+- brain-calc
+- brain-even
+- brain-gcd
+- brain-prime
+- brain-progression
 
 [![asciicast](https://asciinema.org/a/wQbByKcx11JTFF5zvsDiggzla.svg)](https://asciinema.org/a/wQbByKcx11JTFF5zvsDiggzla)
 
