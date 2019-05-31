@@ -7,23 +7,18 @@ const task = 'What number is missing in the progression?';
 const lengthOfProgression = 10;
 
 const getGameData = () => {
-  const baseNumber = getRandomNumber(1, 100);
-  const stepOfProgression = getRandomNumber(1, 5);
+  const firstNumber = getRandomNumber(1, 100);
+  const step = getRandomNumber(1, 5);
   const spaceIndex = getRandomNumber(0, lengthOfProgression - 1);
   const progression = [];
-  let element = baseNumber;
   for (let i = 0; i < lengthOfProgression; i += 1) {
     if (i === spaceIndex) {
       progression.push('..');
-    } else {
-      progression.push(String(element));
     }
-    element += stepOfProgression;
+    progression.push(String(firstNumber + step * i));
   }
-  const correctAnswer = String(baseNumber + stepOfProgression * spaceIndex);
+  const correctAnswer = String(firstNumber + step * spaceIndex);
   return cons(progression, correctAnswer);
 };
 
-const startGame = () => makeGame(task, getGameData);
-
-export default startGame;
+export default () => makeGame(task, getGameData);

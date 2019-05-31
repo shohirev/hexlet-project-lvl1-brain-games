@@ -24,7 +24,8 @@ const makeGame = (task, getGameData) => {
       iter(counter + 1);
       return;
     }
-    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}. Let's try again, ${userName}!`);
+    console.log(`${userAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.`);
+    console.log(`Let's try again, ${userName}!`);
   };
 
   return iter(0);

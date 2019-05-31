@@ -12,6 +12,4 @@ const getGameData = () => {
   return cons(question, correctAnswer);
 };
 
-const startGame = () => makeGame(task, getGameData);
-
-export default startGame;
+export default () => makeGame(task, getGameData);
