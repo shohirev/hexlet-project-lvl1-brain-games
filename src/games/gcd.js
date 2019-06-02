@@ -2,9 +2,9 @@ import makeGame from '..';
 import getRandomNumber from '../functions/functions';
 import { cons } from 'hexlet-pairs';
 
-const getGCD = (x, y) => {
+const GetGreatestCommonDivisor = (x, y) => {
   if (x !== 0) {
-    return getGCD(y % x, x);
+    return GetGreatestCommonDivisor(y % x, x);
   }
   return y;
 };
@@ -15,7 +15,7 @@ const getGameData = () => {
   const number1 = getRandomNumber(1, 100);
   const number2 = getRandomNumber(1, 100);
   const question = `${number1} ${number2}`;
-  const correctAnswer = String(getGCD(number1, number2));
+  const correctAnswer = String(GetGreatestCommonDivisor(number1, number2));
   return cons(question, correctAnswer);
 };
 

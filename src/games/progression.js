@@ -4,20 +4,21 @@ import { cons } from 'hexlet-pairs';
 
 const task = 'What number is missing in the progression?';
 
-const lengthOfProgression = 10;
+const length = 10;
 
 const getGameData = () => {
-  const firstNumber = getRandomNumber(1, 100);
+  const firstMember = getRandomNumber(1, 100);
   const step = getRandomNumber(1, 5);
-  const spaceIndex = getRandomNumber(0, lengthOfProgression - 1);
+  const spaceIndex = getRandomNumber(0, length - 1);
   const progression = [];
-  for (let i = 0; i < lengthOfProgression; i += 1) {
+  for (let i = 0; i < length; i += 1) {
     if (i === spaceIndex) {
       progression.push('..');
+    } else {
+      progression.push(firstMember + step * i);
     }
-    progression.push(String(firstNumber + step * i));
   }
-  const correctAnswer = String(firstNumber + step * spaceIndex);
+  const correctAnswer = String(firstMember + step * spaceIndex);
   return cons(progression, correctAnswer);
 };
 
